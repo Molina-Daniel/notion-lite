@@ -1,7 +1,12 @@
 import "./App.css";
+import { Cover } from "./Page/Cover";
 
 function App() {
-  return <>Notion Lite</>;
+  return (
+    <>
+      <Cover />
+    </>
+  );
 }
 
 export default App;
