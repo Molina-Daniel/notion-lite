@@ -18,3 +18,12 @@ body,
 	height: 100%;
 	position: relative;
 }
+
+[contenteditable="true"]:focus {
+	outline: none;
+}
+
+[contenteditable="true"]:empty:focus:before {
+	content: attr(data-placeholder);
+	color: grey;
+}
