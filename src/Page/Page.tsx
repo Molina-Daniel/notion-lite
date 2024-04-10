@@ -36,7 +36,7 @@ export const Page = () => {
     <>
       <Cover />
       <div>
-        <Title addNode={addNode} title={title} changeTitle={setTitle} />
+        <Title addNode={addNode} title={title} changePageTitle={setTitle} />
         {nodes.map((node, index) => (
           <BasicNode
             key={node.id}

@@ -5,11 +5,11 @@ import styles from "./Title.module.css";
 
 type TitleProps = {
   title: string;
-  changeTitle(title: string): void;
+  changePageTitle(title: string): void;
   addNode(node: NodeData, index: number): void;
 };
 
-export const Title = ({ title, changeTitle, addNode }: TitleProps) => {
+export const Title = ({ title, changePageTitle, addNode }: TitleProps) => {
   const headerRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -25,22 +25,16 @@ export const Title = ({ title, changeTitle, addNode }: TitleProps) => {
         className={styles.title}
         contentEditable
         suppressContentEditableWarning
-        onInput={(event) => changeTitle(event.currentTarget.textContent || "")}
+        onInput={(event) =>
+          changePageTitle(event.currentTarget.textContent || "")
+        }
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             event.preventDefault();
-            addNode({ id: nanoid(), type: "text", value: "" }, 0);
+            addNode({ type: "text", value: "", id: nanoid() }, 0);
           }
         }}
-      >
-        {title}
-      </h1>
-      <button onClick={() => changeTitle("New Title")}>Change Title</button>
-      <button
-        onClick={() => addNode({ id: "1", type: "text", value: "New Node" }, 0)}
-      >
-        Add Node
-      </button>
+      />
     </div>
   );
 };
