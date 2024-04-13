@@ -42,7 +42,7 @@ export const Page = () => {
             key={node.id}
             node={node}
             isFocused={focusedNodeIndex === index}
-            updateFocusedIndex={() => setFocusedNodeIndex(index)}
+            updateFocusedIndex={setFocusedNodeIndex}
             index={index}
             addNode={addNode}
             removeNode={removeNode}
