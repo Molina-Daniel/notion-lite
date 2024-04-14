@@ -10,7 +10,7 @@ export const createPage = () => {
     id,
     slug,
     nodes: [],
-    cover: "notion-lite-cover.png",
+    cover: "notion-lite-cover.jpg",
   };
   return page;
 };
