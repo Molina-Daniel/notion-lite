@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { BasicNode } from "../Node/BasicNode";
+import { NodeTypeSwitcher } from "../Node/NodeTypeSwitcher";
 import { useAppState } from "../state/AppStateContext";
 import { useFocusedNodeIndex } from "./useFocusedNodeIndex";
 import { Cover } from "./Cover";
@@ -18,7 +18,7 @@ export const Page = () => {
       <div>
         <Title addNode={addNode} title={title} changePageTitle={setTitle} />
         {nodes.map((node, index) => (
-          <BasicNode
+          <NodeTypeSwitcher
             key={node.id}
             node={node}
             isFocused={focusedNodeIndex === index}
