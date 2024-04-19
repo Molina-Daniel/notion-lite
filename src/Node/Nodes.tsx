@@ -5,26 +5,30 @@ import {
   useRef,
 } from "react";
 import { nanoid } from "nanoid";
-import { NodeData } from "../utils/types";
+import cx from "classnames";
+import { NodeData, NodeType } from "../utils/types";
 import { useAppState } from "../state/AppStateContext";
-import styles from "./BasicNode.module.css";
+import styles from "./Nodes.module.css";
+import { CommandPannel } from "./CommandPanel";
 
-type BasicNodeProps = {
+type NodesProps = {
   node: NodeData;
   updateFocusedIndex(index: number): void;
   isFocused: boolean;
   index: number;
 };
 
-export const BasicNode = ({
+export const Nodes = ({
   node,
   updateFocusedIndex,
   isFocused,
   index,
-}: BasicNodeProps) => {
+}: NodesProps) => {
   const nodeRef = useRef<HTMLDivElement>(null);
+  const showCommandPanel = isFocused && node.value[0] === "/";
 
-  const { addNode, changeNodeValue, removeNodeByIndex } = useAppState();
+  const { addNode, changeNodeValue, changeNodeType, removeNodeByIndex } =
+    useAppState();
 
   useEffect(() => {
     if (isFocused) {
@@ -39,6 +43,13 @@ export const BasicNode = ({
       nodeRef.current.textContent = node.value;
     }
   }, [node]);
+
+  const parseCommand = (nodeType: NodeType) => {
+    if (nodeRef.current) {
+      changeNodeType(index, nodeType);
+      nodeRef.current.textContent = "";
+    }
+  };
 
   const handleInput: FormEventHandler<HTMLDivElement> = ({ currentTarget }) => {
     const { textContent } = currentTarget;
@@ -75,14 +86,19 @@ export const BasicNode = ({
   };
 
   return (
-    <div
-      onInput={handleInput}
-      onClick={handleClick}
-      onKeyDown={onKeyDown}
-      ref={nodeRef}
-      contentEditable
-      suppressContentEditableWarning
-      className={styles.node}
-    />
+    <>
+      {showCommandPanel && (
+        <CommandPannel selectItem={parseCommand} nodeText={node.value} />
+      )}
+      <div
+        onInput={handleInput}
+        onClick={handleClick}
+        onKeyDown={onKeyDown}
+        ref={nodeRef}
+        contentEditable
+        suppressContentEditableWarning
+        className={cx(styles.node, styles[node.type])}
+      />
+    </>
   );
 };

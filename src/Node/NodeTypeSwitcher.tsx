@@ -1,5 +1,5 @@
 import { NodeData, NodeType } from "../utils/types";
-import { BasicNode } from "./BasicNode";
+import { Nodes } from "./Nodes";
 
 type NodeTypeSwitcherProps = {
   node: NodeData;
@@ -24,7 +24,7 @@ export const NodeTypeSwitcher = ({
 }: NodeTypeSwitcherProps) => {
   if (TEXT_NODE_TYPES.includes(node.type)) {
     return (
-      <BasicNode
+      <Nodes
         node={node}
         index={index}
         isFocused={isFocused}
