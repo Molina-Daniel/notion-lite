@@ -2,13 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import { Page } from "./Page/Page";
 import { AppStateProvider } from "./state/AppStateContext";
 import { createPage } from "./utils/page";
+import { Auth } from "./auth/Auth";
 import "./App.css";
 
 const initialState = createPage();
-
-const Auth = () => {
-  return <div>Auth</div>;
-};
 
 function App() {
   return (
