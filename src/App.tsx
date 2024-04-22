@@ -3,6 +3,7 @@ import { Page } from "./Page/Page";
 import { AppStateProvider } from "./state/AppStateContext";
 import { createPage } from "./utils/page";
 import { Auth } from "./auth/Auth";
+import { Private } from "./auth/Private";
 import "./App.css";
 
 const initialState = createPage();
@@ -14,17 +15,25 @@ function App() {
       <Route
         path="/"
         element={
-          <AppStateProvider initialState={initialState}>
-            <Page />
-          </AppStateProvider>
+          <Private
+            component={
+              <AppStateProvider initialState={initialState}>
+                <Page />
+              </AppStateProvider>
+            }
+          />
         }
       />
       <Route
         path="/:id"
         element={
-          <AppStateProvider initialState={initialState}>
-            <Page />
-          </AppStateProvider>
+          <Private
+            component={
+              <AppStateProvider initialState={initialState}>
+                <Page />
+              </AppStateProvider>
+            }
+          />
         }
       />
     </Routes>
