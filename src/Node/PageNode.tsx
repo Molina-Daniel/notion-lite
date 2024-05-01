@@ -4,7 +4,7 @@ import cx from "classnames";
 import { NodeData } from "../utils/types";
 import { useAppState } from "../state/AppStateContext";
 import { supabase } from "../supabaseClient";
-import styles from ".Node.module.css";
+import styles from "./Nodes.module.css";
 
 type PageNodeProps = {
   node: NodeData;
@@ -63,6 +63,8 @@ export const PageNode = ({ node, isFocused, index }: PageNodeProps) => {
     <div
       onClick={navigateToPage}
       className={cx(styles.node, styles.page, { [styles.focused]: isFocused })}
-    ></div>
+    >
+      📄 {pageTitle}
+    </div>
   );
 };
