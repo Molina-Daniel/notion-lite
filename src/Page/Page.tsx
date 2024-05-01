@@ -12,7 +12,15 @@ import { Spacer } from "./Spacer";
 import { Title } from "./Title";
 
 export const Page = () => {
-  const { addNode, nodes, reorderNodes, setTitle, title } = useAppState();
+  const {
+    addNode,
+    cover,
+    setCoverImage,
+    nodes,
+    reorderNodes,
+    setTitle,
+    title,
+  } = useAppState();
   const [focusedNodeIndex, setFocusedNodeIndex] = useFocusedNodeIndex({
     nodes,
   });
@@ -26,7 +34,7 @@ export const Page = () => {
 
   return (
     <>
-      <Cover />
+      <Cover filePath={cover} changePageCover={setCoverImage} />
       <div>
         <Title addNode={addNode} title={title} changePageTitle={setTitle} />
         <DndContext onDragEnd={handleDragEvent}>
